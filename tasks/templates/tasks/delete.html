@@ -1,0 +1,59 @@
+{% load widget_tweaks %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+	body {
+		background-color: #2d4059;
+	}
+
+	input {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	.center-column {
+		width: 600px;
+		margin: 20px auto;
+		padding: 20px;
+		background-color: #e0ece4;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px 	rgba(0, 0, 0, 0.75);
+	}
+
+	.pragraph {
+		background-color: #056676;
+		text-align: center;
+		margin: 25px;
+		padding: 7px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 20px;
+		box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);
+
+	}
+
+	.a {
+		text-align: center
+	}
+</style>
+
+<div class="center-column">
+	<div class="pragraph">
+		<div>Are you sure you want to delete <a class="font-weight-bold">{{item}}</a>?</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-6 text-right">
+				<a class="btn btn-lg btn-primary font-weight-bold" href="{% url 'list' %}">Cancle</a>
+			</div>
+			<div class="col-6">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<button class="btn btn-danger btn-lg font-weight-bold" type="submit">Confirm</button>
+				</form>
+			</div>
+		</div>
+	</div>
