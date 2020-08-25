@@ -4,26 +4,25 @@
 {% block content %}
 
 <div class="center-column">
-<form method="POST" action="/">
-    {% csrf_token %}
-    {% render_field form.title  class="form-control" placeholder="Enter task here..."%}
-    <input class="btn btn-info" type="submit" name="Create Task">
-</form>
+	<form method="POST" action="/">
+		{% csrf_token %}
+		{% render_field form.title  class="form-control" placeholder="Enter task here..."%}
+		<input class="btn btn-info" type="submit" name="Create Task">
+	</form>
 
+	<div class="todo-list">
+		{% for task in tasks %}
+		<div class="item-row">
+			<a class="btn btn-sm btn-success" href="{% url 'update_task' task.id %}">Update</a>
+			<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
 
-<div class="todo-list">
-{% for task in tasks %}
-    <div class="item-row">
-        <a class="btn btn-sm btn-success" href="{% url 'update_task' task.id %}">Update</a>
-        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-        
-        {% if task.complete == True %}
-        <strike>{{task}}</strike>
-        {% else %}
-        <span>{{task}}</span>
-        {% endif %}
-    </div>
-{% endfor %}
-    </div>
+			{% if task.complete == True %}
+			<strike>{{task}}</strike>
+			{% else %}
+			<span>{{task}}</span>
+			{% endif %}
+		</div>
+		{% endfor %}
+	</div>
 </div>
 {% endblock content %}
